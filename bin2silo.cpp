@@ -85,16 +85,18 @@ int main(int argc, char* argv[]) {
 	};
 	std::vector<point> pts;
 	pts.reserve(nr * (nphi + 1) * (nz + 1));
-	double dx = 2.0 * M_PI / double(nphi);
+	double dphi = 2.0 * M_PI / double(nphi);
+	double dr =1.0 / 127.0;
+	double dz = dr;
 	std::vector<int> zone_nodes;
 	zone_nodes.reserve(8 * total_sz);
 
 	for (int i = 0; i != nphi + 1; ++i) {
 		for (int j = 0; j != nz + 1; ++j) {
 			for (int k = 0; k != nr; ++k) {
-				double phi = (i) * dx;
-				double z = (j-nz/2) * dx;
-				double r = k * dx;
+				double phi = (i) * dphi;
+				double z = (j-nz/2) * dz;
+				double r = k * dr;
 				point pt;
 				pt.x = r * cos(phi);
 				pt.y = r * sin(phi);
